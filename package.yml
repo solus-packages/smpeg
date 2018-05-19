@@ -1,0 +1,23 @@
+name       : smpeg
+version    : 0.4.5
+release    : 1
+source     :
+    - https://solus-project.com/sources/smpeg-0.4.5.tar.xz : 86079f8241ac0ac29c2010591a5007fa0c5804a852878e6376e903223b095701
+license    : LGPL-2.1
+component  : programming.library
+summary    : SDL MPEG library
+description: |
+    SDL MPEG library
+builddeps  :
+    - pkgconfig32(gl)
+    - pkgconfig32(glu)
+    - pkgconfig32(sdl2)
+emul32     : yes
+setup      : |
+    export CFLAGS="$CFLAGS -Wno-error=narrowing"
+    %autogen --prefix=/usr \
+             --disable-static
+build      : |
+    %make
+install    : |
+    %make_install
